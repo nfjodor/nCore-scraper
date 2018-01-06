@@ -1,0 +1,27 @@
+{
+    "name": "nCore-scraper",
+    "description": "This scraper downloads the best xvid movies torrent from nCore.",
+    "version": "1.0.0",
+    "main": "scraper.js",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/norbikaa/nCore-scraper.git"
+    },
+    "author": "Norbert Fodor",
+    "config": {
+        "watchingYears": "2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018",
+        "downloadPath": "./torrents/",
+        "torrentLogJsonPath": "./torrents.json",
+        "userDataJsonPath": "./user.json"
+    },
+    "scripts": {
+        "start": "node scraper.js"
+    },
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.2",
+        "crawler": "^1.1.2",
+        "readline-sync": "^1.4.7",
+        "request": "^2.83.0"
+    }
+}
