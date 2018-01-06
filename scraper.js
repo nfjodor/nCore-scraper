@@ -115,7 +115,7 @@ const c = new Crawler({
         isTorrentsDownloaded = true;
         console.log('DONE! Please wait while torrents are downloading... (This process takes a while.)');
         for (const i in allTorrent) {
-            if (true || allDownloadedTorrent.indexOf(allTorrent[i].imdbId) === -1) {
+            if (allDownloadedTorrent.indexOf(allTorrent[i].imdbId) === -1) {
                 newQueue(c, allTorrent[i].url, null, true);
                 torrentsSize += allTorrent[i].size;
                 torrentsNum++;
