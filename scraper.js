@@ -5,6 +5,8 @@ const $ = require('cheerio');
 const querystring = require('querystring');
 const readlineSync = require('readline-sync');
 
+fs.appendFileSync('run.log', Date() + '\n');
+
 // base functions
 function loadFile(filePath, newFileContent = '{}') {
     if (!fs.existsSync(filePath)) {
