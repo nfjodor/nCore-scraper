@@ -93,18 +93,19 @@ if (!fs.existsSync(downloadPath)){
 // define new crawler
 const c = new Crawler({
     maxConnections: 10,
+    encoding: null,
     headers: nCoreCookie,
     jQuery: false,
     callback: (error, res, done) => {
         if (error) {
-            console.log(error.stack);
+            console.log(error);
         } else if (res.options.isFile) {
             const searchString = res.headers['content-disposition'] || '';
             const filename = (/filename=\"(.*)\"/g).exec(searchString)[1];
             fs.createWriteStream(downloadPath + filename).write(res.body);
             process.stdout.write('.');
         } else {
-            processTorrent(res.body, allTorrent);
+            processTorrent(res.body.toString('utf8'), allTorrent);
         }
         done();
     }
@@ -114,7 +115,7 @@ const c = new Crawler({
         isTorrentsDownloaded = true;
         console.log('DONE! Please wait while torrents are downloading... (This process takes a while.)');
         for (const i in allTorrent) {
-            if (allDownloadedTorrent.indexOf(allTorrent[i].imdbId) === -1) {
+            if (true || allDownloadedTorrent.indexOf(allTorrent[i].imdbId) === -1) {
                 newQueue(c, allTorrent[i].url, null, true);
                 torrentsSize += allTorrent[i].size;
                 torrentsNum++;
@@ -133,10 +134,11 @@ for (const i in watchingYears) {
         if (error) {
             console.log(error);
         } else {
-            if (res.body.indexOf('Nincs találat!') === -1) {
-                const totalPages = res.body.match(/oldal\=.+?[^\D]*/g);
+            const body = res.body.toString('utf8');
+            if (body.indexOf('Nincs találat!') === -1) {
+                const totalPages = body.match(/oldal\=.+?[^\D]*/g);
                 const foundedPages = parseInt(totalPages[totalPages.length - 1].split('=')[1]) || 1;
-                processTorrent(res.body, allTorrent);
+                processTorrent(body, allTorrent);
                 
                 console.log('Search: ' + res.options.qs.mire + '');
                 console.log('Found ' + foundedPages + ' pages');
