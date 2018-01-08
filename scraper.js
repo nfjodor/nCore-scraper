@@ -15,12 +15,6 @@ function loadFile(filePath, newFileContent = '{}') {
     newFileContent = fs.readFileSync(filePath, 'utf8')
     return newFileContent;
 }
-function userCheck(ncoreUser = {}, property) {
-    if (!ncoreUser[property]) {
-        ncoreUser[property] = readlineSync.question('What is your nCore ' + property + '? ')
-    }
-    return ncoreUser;
-}
 function saveTorrentsInfo(jsonPath, torrents = {}) {
     let imdbIds = [];
     Object.keys(torrents).map((objectKey, index) => {
@@ -64,12 +58,11 @@ function processTorrent(html = '', allTorrent = {}) {
     });
 }
 
-// get or set nCore user data
-const userDataPath = process.env.npm_package_config_userDataJsonPath;
-let ncoreUser = JSON.parse(loadFile(userDataPath));
-ncoreUser = userCheck(ncoreUser, 'username');
-ncoreUser = userCheck(ncoreUser, 'password');
-fs.writeFileSync(userDataPath, JSON.stringify(ncoreUser));
+// get nCore user from env
+let ncoreUser = {
+    name: process.env.npm_config_ncore_user,
+    pass: process.env.npm_config_ncore_pass
+};
 
 // global and important variables
 let isTorrentsDownloaded = false;
@@ -79,7 +72,7 @@ const torrentLogJsonPath = process.env.npm_package_config_torrentLogJsonPath;
 const watchingYears = process.env.npm_package_config_watchingYears.split(', ');
 const nCoreUrl = 'https://ncore.cc/torrents.php';
 const allDownloadedTorrent = JSON.parse(loadFile(torrentLogJsonPath, '[]'));
-const nCoreCookie = { Cookie: 'nick=' + ncoreUser.username + '; pass=' + ncoreUser.password + ';' };
+const nCoreCookie = { Cookie: 'nick=' + ncoreUser.name + '; pass=' + ncoreUser.pass + ';' };
 const baseGetParams = {
     tipus: 'xvid_hun',
     miben: 'name',
