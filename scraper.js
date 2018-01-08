@@ -44,7 +44,7 @@ function processTorrent(html = '', allTorrent = {}) {
         const urlObject = querystring.parse($link.attr('href'));
         const url = nCoreUrl + '?action=download&id=' + urlObject.id + '&key=' + ncoreUser.trackerId;
         const downloads = $this.find('.box_d2').text().length;
-        const imdbId = $infoLink.length ? $infoLink.attr('href').match(/\w\w\d\d\d\d\d\d\d/g)[0] : null;
+        const imdbId = $infoLink.length ? $infoLink.attr('href').match(/tt\d{7}/g)[0] : null;
         let size = parseFloat($this.find('.box_meret2').text());
 
         if (sizeUnit === 'MB') { size = size / 1024 }
@@ -69,7 +69,6 @@ const userDataPath = process.env.npm_package_config_userDataJsonPath;
 let ncoreUser = JSON.parse(loadFile(userDataPath));
 ncoreUser = userCheck(ncoreUser, 'username');
 ncoreUser = userCheck(ncoreUser, 'password');
-ncoreUser = userCheck(ncoreUser, 'trackerId');
 fs.writeFileSync(userDataPath, JSON.stringify(ncoreUser));
 
 // global and important variables
@@ -141,6 +140,11 @@ for (const i in watchingYears) {
                 const totalPages = body.match(/oldal\=.+?[^\D]*/g);
                 const foundedPages = parseInt(totalPages[totalPages.length - 1].split('=')[1]) || 1;
                 processTorrent(body, allTorrent);
+
+                if (!ncoreUser.trackerId) {
+                    const regex = /<div class=\"letoltve_txt\"><a href\="torrents\.php\?action=download&id=\'\+id\+\'\&key\=(.*)">T/g;
+                    ncoreUser.trackerId = regex.exec(body)[1]
+                }
                 
                 console.log('Search: ' + res.options.qs.mire + '');
                 console.log('Found ' + foundedPages + ' pages');
