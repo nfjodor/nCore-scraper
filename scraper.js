@@ -29,13 +29,18 @@ function newQueue(crawler, uri, qs = {}, isFile = false, callback) {
     crawler.queue({ uri, qs, isFile, callback });
 }
 function processTorrent(html = '', allTorrent = {}) {
+    if (!ncoreUser.trackerId) {
+        const regex = /\&key[^"]*/g;
+        const key = regex.exec(html)[0];
+        ncoreUser.trackerId = key;
+    }
     $(html).find('.box_torrent').each(function() {
         const $this = $(this);
         const $infoLink = $this.find('.infolink');
         const $link = $this.find('.torrent_txt a');
         const sizeUnit = $this.find('.box_meret2').text().replace(/[\d\.\ ]/g, '').toUpperCase();
         const urlObject = querystring.parse($link.attr('href'));
-        const url = nCoreUrl + '?action=download&id=' + urlObject.id + '&key=' + ncoreUser.trackerId;
+        const url = nCoreUrl + '?action=download&id=' + urlObject.id + ncoreUser.trackerId;
         const downloads = $this.find('.box_d2').text().length;
         const imdbId = $infoLink.length ? $infoLink.attr('href').match(/tt\d{7}/g)[0] : null;
         let size = parseFloat($this.find('.box_meret2').text());
@@ -93,7 +98,7 @@ const c = new Crawler({
         if (error) {
             console.log(error);
         } else if (res.options.isFile) {
-            const searchString = res.headers['content-disposition'] || '';
+            const searchString = res.headers['content-disposition'] || 'filename="' + (new Date().getTime()) + '.torrent"';
             const filename = (/filename=\"(.*)\"/g).exec(searchString)[1];
             fs.createWriteStream(downloadPath + filename).write(res.body);
             process.stdout.write('.');
@@ -133,11 +138,6 @@ for (const i in watchingYears) {
                 const foundedPages = parseInt(totalPages[totalPages.length - 1].split('=')[1]) || 1;
                 processTorrent(body, allTorrent);
 
-                if (!ncoreUser.trackerId) {
-                    const regex = /<div class=\"letoltve_txt\"><a href\="torrents\.php\?action=download&id=\'\+id\+\'\&key\=(.*)">T/g;
-                    ncoreUser.trackerId = regex.exec(body)[1]
-                }
-                
                 console.log('Search: ' + res.options.qs.mire + '');
                 console.log('Found ' + foundedPages + ' pages');
                 console.log('============' + Array(String(foundedPages).length + 1).join('='));
