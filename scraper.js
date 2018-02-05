@@ -134,8 +134,8 @@ for (const i in watchingYears) {
         } else {
             const body = res.body.toString('utf8');
             if (body.indexOf('Nincs találat!') === -1) {
-                const totalPages = body.match(/oldal\=.+?[^\D]*/g);
-                const foundedPages = parseInt(totalPages[totalPages.length - 1].split('=')[1]) || 1;
+                const totalPages = body.match(/oldal\=.+?[^\D]*/g) || ['oldal=1'];
+                const foundedPages = parseInt(totalPages[totalPages.length - 1].split('=')[1]);
                 processTorrent(body, allTorrent);
 
                 console.log('Search: ' + res.options.qs.mire + '');
