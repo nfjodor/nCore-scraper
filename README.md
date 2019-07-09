@@ -39,15 +39,15 @@ You can pass these options to the nCoreScraper() constructor if you want to chan
 #### Get hashed ncore password
 To get hashed password, you need to login to site with "Lower security". This means the backend generates a key, that you can use for login.
 
-<center>
+<p align="center">
     <img src="https://gist.githubusercontent.com/nfjodor/dc2ceece26b866451238779518c7a9fc/raw/54da831ed4404502ca033e1742e29f64c2438c6e/ncore-login.png">
-</center>
+</p>
 
 After login you can find the pass cookie in browser's developer toolbar.
 
-<center>
+<p align="center">
     <img src="https://gist.githubusercontent.com/nfjodor/dc2ceece26b866451238779518c7a9fc/raw/54da831ed4404502ca033e1742e29f64c2438c6e/ncore-cookie.png">
-</center>
+</p>
 
 ### Optional options
  * `options.debug`: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type), Your ncore username. (Default false)
