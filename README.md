@@ -94,46 +94,54 @@ The data you will get is an object of objects. The Object structure is the follo
     tt0088763: {
         hu: {
             sd: {
-                id: 'torrentId',
-                imdbId: 'tt0088763',
-                name: 'Back.To.The.Future.I',
-                lang: 'hu',
-                quality: 'sd',
-                size: 1.67,
-                downloads: 5,
-                downloadUrl: 'http://torrent-download.url' 
+                torrentId: {
+                    id: 'torrentId',
+                    imdbId: 'tt0088763',
+                    name: 'Back.To.The.Future.I',
+                    lang: 'hu',
+                    quality: 'sd',
+                    size: 1.67,
+                    downloads: 5,
+                    downloadUrl: 'http://torrent-download.url' 
+                }
             },
             hd: {
-                id: 'torrentId',
-                imdbId: 'tt0088763',
-                name: 'Back.To.The.Future.I',
-                lang: 'hu',
-                quality: 'hd',
-                size: 9.47,
-                downloads: 5,
-                downloadUrl: 'http://torrent-download.url' 
+                torrentId: {
+                    id: 'torrentId',
+                    imdbId: 'tt0088763',
+                    name: 'Back.To.The.Future.I',
+                    lang: 'hu',
+                    quality: 'hd',
+                    size: 9.47,
+                    downloads: 5,
+                    downloadUrl: 'http://torrent-download.url' 
+                }
             }
         },
         en: {
             sd: {
-                id: 'torrentId',
-                imdbId: 'tt0088763',
-                name: 'Back.To.The.Future.I',
-                lang: 'en',
-                quality: 'sd',
-                size: 1.77,
-                downloads: 5,
-                downloadUrl: 'http://torrent-download.url' 
+                torrentId: {
+                    id: 'torrentId',
+                    imdbId: 'tt0088763',
+                    name: 'Back.To.The.Future.I',
+                    lang: 'en',
+                    quality: 'sd',
+                    size: 1.77,
+                    downloads: 5,
+                    downloadUrl: 'http://torrent-download.url' 
+                }
             },
             hd: {
-                id: 'torrentId',
-                imdbId: 'tt0088763',
-                name: 'Back.To.The.Future.I',
-                lang: 'en',
-                quality: 'hd',
-                size: 8.12,
-                downloads: 5,
-                downloadUrl: 'http://torrent-download.url' 
+                torrentId: {
+                    id: 'torrentId',
+                    imdbId: 'tt0088763',
+                    name: 'Back.To.The.Future.I',
+                    lang: 'en',
+                    quality: 'hd',
+                    size: 8.12,
+                    downloads: 5,
+                    downloadUrl: 'http://torrent-download.url' 
+                }
             }
         }
     }
