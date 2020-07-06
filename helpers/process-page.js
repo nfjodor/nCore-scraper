@@ -1,65 +1,61 @@
-import querystring from 'querystring';
-import { NCORE_KEY_REGEX, NCORE_URL } from '../constants';
+const querystring = require("querystring");
+const { NCORE_KEY_REGEX, NCORE_URL } = require("../constants");
 
-let ncoreKey = '';
+let ncoreKey = "";
 
-const getImdbId = $row => {
-  const $infoLink = $row.find('.infolink');
+const getImdbId = ($row) => {
+  const $infoLink = $row.find(".infolink");
   const imdbIdArray = $infoLink.length
-    ? $infoLink.attr('href').match(/tt\d{7}/g)
+    ? $infoLink.attr("href").match(/tt\d{7}/g)
     : null;
   return imdbIdArray ? imdbIdArray[0] : null;
 };
 
-const getId = $row => {
-  const urlObject = querystring.parse($row.find('.torrent_txt a').attr('href'));
+const getId = ($row) => {
+  const urlObject = querystring.parse($row.find(".torrent_txt a").attr("href"));
   return urlObject.id;
 };
 
-const getDownloadUrl = id => {
+const getDownloadUrl = (id) => {
   return `${NCORE_URL}?action=download&id=${id}&key=${ncoreKey}`;
 };
 
-const getDownloadCount = $row => {
-  return $row.find('.box_d2').text().length;
+const getDownloadCount = ($row) => {
+  return $row.find(".box_d2").text().length;
 };
 
-const getSize = $row => {
+const getSize = ($row) => {
   const sizeUnit = $row
-    .find('.box_meret2')
+    .find(".box_meret2")
     .text()
-    .replace(/[\d\.\ ]/g, '')
+    .replace(/[\d\.\ ]/g, "")
     .toLowerCase();
 
-  let size = parseFloat($row.find('.box_meret2').text());
+  let size = parseFloat($row.find(".box_meret2").text());
 
-  if (sizeUnit === 'mb') {
+  if (sizeUnit === "mb") {
     size = size / 1024;
   }
-  if (sizeUnit === 'kb') {
+  if (sizeUnit === "kb") {
     size = size / 1024 / 1024;
   }
 
   return size;
 };
 
-const getQualityAndLanguage = $row => {
-  return $row
-    .find('.box_alap_img img')
-    .attr('alt')
-    .toLowerCase()
-    .split('/');
+const getQualityAndLanguage = ($row) => {
+  return $row.find(".box_alap_img img").attr("alt").toLowerCase().split("/");
 };
 
-const getName = $row => {
-  return $row.find('.tabla_szoveg a').attr('title');
+const getName = ($row) => {
+  return $row.find(".tabla_szoveg a").attr("title");
 };
 
-export default ($, movieListObject, isDebug) => {
+module.exports = ($, movieListObject, isDebug) => {
   if (!ncoreKey) {
     ncoreKey = NCORE_KEY_REGEX.exec($.html())[0];
   }
-  $('.box_torrent').each(function() {
+  $(".box_torrent").each(function () {
     const $row = $(this);
     const imdbId = getImdbId($row);
     if (!imdbId) {
@@ -87,11 +83,11 @@ export default ($, movieListObject, isDebug) => {
       quality,
       size,
       downloads,
-      downloadUrl
+      downloadUrl,
     };
   });
   if (isDebug) {
-    process.stdout.write('.');
+    process.stdout.write(".");
   }
   return movieListObject;
 };

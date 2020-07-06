@@ -1,8 +1,8 @@
-const printSeparator = separatorLength => {
-  console.log(`${Array(separatorLength + 1).join('=')}`);
+const printSeparator = (separatorLength) => {
+  console.log(`${Array(separatorLength + 1).join("=")}`);
 };
-export const pages = watchingSearchTerms => {
-  Object.keys(watchingSearchTerms).forEach(searchTerm => {
+exports.pages = (watchingSearchTerms) => {
+  Object.keys(watchingSearchTerms).forEach((searchTerm) => {
     const pageCount = watchingSearchTerms[searchTerm];
     const searchTermString = `Search term: ${searchTerm}`;
     const foundString = `Found ${pageCount} pages`;
@@ -12,12 +12,12 @@ export const pages = watchingSearchTerms => {
   });
 };
 
-export const message = (message = '') => {
+exports.message = (message = "") => {
   if (message.length) {
-    process.stdout.write('\n');
+    process.stdout.write("\n");
     printSeparator(message.length + 2);
     console.log(` ${message} `);
     printSeparator(message.length + 2);
-    process.stdout.write('\n');
+    process.stdout.write("\n");
   }
 };
