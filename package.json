@@ -1,7 +1,7 @@
 {
   "name": "ncore-scraper",
   "description": "This scraper get movie informations from hungarian biggest torrent site, such as torrent download link, downloads, name, category, language.",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "main": "index.js",
   "license": "MIT",
   "repository": {
