@@ -33,10 +33,10 @@ const getSize = ($row) => {
 
   let size = parseFloat($row.find(".box_meret2").text());
 
-  if (sizeUnit === "mb") {
+  if (sizeUnit === "mb" || sizeUnit === "mib") {
     size = size / 1024;
   }
-  if (sizeUnit === "kb") {
+  if (sizeUnit === "kb" || sizeUnit === "kib") {
     size = size / 1024 / 1024;
   }
 
