@@ -61,6 +61,7 @@ This method has an optional argument, the `searchTerm`. If you pass a string par
 The data you will get is an object of objects. The Object structure is the following:
 ```js
 [imdbId]: {
+    imdbId: String,
     [lang(`hu` or `en`)]: {
         [quality(`sd` or `hd`)]: {
             [torrentId]: {
@@ -92,6 +93,7 @@ The data you will get is an object of objects. The Object structure is the follo
 ```js
 {
     tt0088763: {
+        imdbId: 'tt0088763',
         hu: {
             sd: {
                 torrentId: {

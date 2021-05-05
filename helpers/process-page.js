@@ -73,6 +73,7 @@ module.exports = ($, movieListObject, isDebug) => {
     movieListObject[imdbId] = movieListObject[imdbId] || {};
     const torrent = movieListObject[imdbId];
 
+    torrent.imdbId = imdbId;
     torrent[lang] = torrent[lang] || {};
     torrent[lang][quality] = torrent[lang][quality] || {};
     torrent[lang][quality][id] = torrent[lang][quality][id] || {
