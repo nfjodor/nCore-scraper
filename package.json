@@ -1,7 +1,7 @@
 {
   "name": "ncore-scraper",
   "description": "This scraper get movie informations from hungarian biggest torrent site, such as torrent download link, downloads, name, category, language.",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "main": "index.js",
   "license": "MIT",
   "repository": {
@@ -10,6 +10,6 @@
   },
   "author": "Norbert Fodor",
   "dependencies": {
-    "crawler": "^1.2.2"
+    "crawler": "^1.3.0"
   }
 }
