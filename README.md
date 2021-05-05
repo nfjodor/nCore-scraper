@@ -95,8 +95,8 @@ The data you will get is an object of objects. The Object structure is the follo
     tt0088763: {
         imdbId: 'tt0088763',
         hu: {
-            sd: {
-                torrentId: {
+            sd: [
+                {
                     id: 'torrentId',
                     imdbId: 'tt0088763',
                     name: 'Back.To.The.Future.I',
@@ -106,9 +106,9 @@ The data you will get is an object of objects. The Object structure is the follo
                     downloads: 5,
                     downloadUrl: 'http://torrent-download.url' 
                 }
-            },
-            hd: {
-                torrentId: {
+            ],
+            hd: [
+                {
                     id: 'torrentId',
                     imdbId: 'tt0088763',
                     name: 'Back.To.The.Future.I',
@@ -118,11 +118,11 @@ The data you will get is an object of objects. The Object structure is the follo
                     downloads: 5,
                     downloadUrl: 'http://torrent-download.url' 
                 }
-            }
+            ]
         },
         en: {
-            sd: {
-                torrentId: {
+            sd: [
+                {
                     id: 'torrentId',
                     imdbId: 'tt0088763',
                     name: 'Back.To.The.Future.I',
@@ -132,9 +132,9 @@ The data you will get is an object of objects. The Object structure is the follo
                     downloads: 5,
                     downloadUrl: 'http://torrent-download.url' 
                 }
-            },
-            hd: {
-                torrentId: {
+            ],
+            hd: [
+                {
                     id: 'torrentId',
                     imdbId: 'tt0088763',
                     name: 'Back.To.The.Future.I',
@@ -144,7 +144,7 @@ The data you will get is an object of objects. The Object structure is the follo
                     downloads: 5,
                     downloadUrl: 'http://torrent-download.url' 
                 }
-            }
+            ]
         }
     }
 }

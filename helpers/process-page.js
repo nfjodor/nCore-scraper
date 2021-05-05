@@ -66,17 +66,14 @@ module.exports = ($, movieListObject, isDebug) => {
     const size = getSize($row);
     const downloadUrl = getDownloadUrl(id);
     const downloads = getDownloadCount($row);
-    const qualityAndLanguage = getQualityAndLanguage($row);
-    const quality = qualityAndLanguage[0];
-    const lang = qualityAndLanguage[1];
+    const [quality, lang] = getQualityAndLanguage($row);
 
-    movieListObject[imdbId] = movieListObject[imdbId] || {};
+    movieListObject[imdbId] = movieListObject[imdbId] || { imdbId };
     const torrent = movieListObject[imdbId];
 
-    torrent.imdbId = imdbId;
     torrent[lang] = torrent[lang] || {};
-    torrent[lang][quality] = torrent[lang][quality] || {};
-    torrent[lang][quality][id] = torrent[lang][quality][id] || {
+    torrent[lang][quality] = torrent[lang][quality] || [];
+    torrent[lang][quality].push({
       id,
       imdbId,
       name,
@@ -85,7 +82,7 @@ module.exports = ($, movieListObject, isDebug) => {
       size,
       downloads,
       downloadUrl,
-    };
+    });
   });
   if (isDebug) {
     process.stdout.write(".");
