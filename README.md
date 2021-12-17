@@ -1,6 +1,6 @@
 # nCore-scraper
 
-This is a small tool to get movie infomrations from biggest hungarian torrent site.
+This is a small tool to get movies data from the biggest Hungarian torrent site.
 
 # Get started
 
@@ -33,30 +33,30 @@ scraper.start().then(movieList => {
 You can pass these options to the nCoreScraper() constructor if you want to change default props.
 
 ### Required options
- * `options.user`: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your ncore username.
- * `options.pass` : [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your hashed ncore password.
+ * `options.user`: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your nCore username.
+ * `options.pass` : [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your hashed nCore password.
 
-#### Get hashed ncore password
-To get hashed password, you need to login to site with "Lower security". This means the backend generates a key, that you can use for login.
+#### Get hashed nCore password
+To get hashed password, you need to log in to the site with "Lower security". This means the backend generates a key, that you can use for login.
 
 <p align="center">
     <img src="https://gist.githubusercontent.com/nfjodor/dc2ceece26b866451238779518c7a9fc/raw/54da831ed4404502ca033e1742e29f64c2438c6e/ncore-login.png">
 </p>
 
-After login you can find the pass cookie in browser's developer toolbar.
+After login, you can find the pass cookie in the browser's developer toolbar.
 
 <p align="center">
     <img src="https://gist.githubusercontent.com/nfjodor/dc2ceece26b866451238779518c7a9fc/raw/54da831ed4404502ca033e1742e29f64c2438c6e/ncore-cookie.png">
 </p>
 
 ### Optional options
- * `options.debug`: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type), Your ncore username. (Default false)
- * `options.searchTerms` : Array, List of movie searching terms. You can use it for watch a movie release or a year, to get informations from newly released movies etc. (Default last 2 years e.g. [2018, 2019])
+ * `options.debug`: [Boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type), You can get information about the scraping state on the console. (Default false)
+ * `options.searchTerms` : [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array), List of movie searching terms. You can use it to find movies by release or by a year. For example to get newly released movies you can use an array of years: [1987, 1989, 1990]. (Default value is the last 2 years, [2020, 2021])
 
 ## Class:nCoreScraper
 ### nCoreScraper.start
 This is a promise. You can start the scraping with this method, after that, you will get a list of movies.
-This method has an optional argument, the `searchTerm`. If you pass a string param, the scraper will use that instead of default.
+This method has an optional argument, the `searchTerm` [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type). If you pass a string param, the scraper will use that instead of the default value.
 
 The data you will get is an object of objects. The Object structure is the following:
 ```js
@@ -79,15 +79,15 @@ The data you will get is an object of objects. The Object structure is the follo
 }
 ```
 
-#### Movie informations
+#### Movie information
  * `id`: String, torrent id.
  * `imdbId`: String, imdb id.
  * `name`: String, name of torrent.
- * `lang`: String, language of torrent. It can be `hu` or `en`.
+ * `lang`: String, the language of torrent. It can be `hu` or `en`.
  * `quality`: String, quality of torrent. It can be `sd` or `hd`.
- * `size`: Number, size of torrent in gigabyte. It is a float number.
- * `downloads`: Number, download count of movie. It can be between `1` and `5`
- * `downloadUrl`: String, download url of torrent file.
+ * `size`: Number, size of the torrent in gigabytes. It is a float number.
+ * `downloads`: Number, download count of the movie. It can be between `1` and `5`
+ * `downloadUrl`: String, download URL of torrent file.
 
 #### Example:
 ```js

@@ -24,7 +24,7 @@ nCoreScraper.prototype.start = async function (searchTerm = null) {
     this.options.searchTerms.length = 0;
     this.options.searchTerms.push(searchTerm);
   }
-  const hrstart = process.hrtime();
+  const hrStart = process.hrtime();
   if (this.options.debug) {
     message(`Scraping started at ${new Date()}`);
   }
@@ -35,13 +35,13 @@ nCoreScraper.prototype.start = async function (searchTerm = null) {
   }
   this.movies = await this.crawler.getMovies();
   return new Promise((resolve) => {
-    const hrend = process.hrtime(hrstart);
+    const hrEnd = process.hrtime(hrStart);
     if (this.options.debug) {
       message(
         `Found ${
           Object.keys(this.movies).length
-        } unique movies that have imdb id. It took ${hrend[0]}s ${Math.round(
-          hrend[1] / 1000000
+        } unique movies that have imdb id. It took ${hrEnd[0]}s ${Math.round(
+          hrEnd[1] / 1000000
         )}ms`
       );
     }
