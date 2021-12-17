@@ -16,8 +16,8 @@ $ npm install ncore-scraper
 const nCoreScraper = require("ncore-scraper");
 
 const options = {
-    nCoreUser: 'YourNcoreUserName',
-    nCorePass: 'YourHashedNcorePass',
+    user: 'YourNcoreUserName',
+    pass: 'YourHashedNcorePass',
     searchTerms: ['Back to the future'],
     debug: true
 };
@@ -33,8 +33,8 @@ scraper.start().then(movieList => {
 You can pass these options to the nCoreScraper() constructor if you want to change default props.
 
 ### Required options
- * `options.nCoreUser`: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your ncore username.
- * `options.nCorePass` : [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your hashed ncore password.
+ * `options.user`: [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your ncore username.
+ * `options.pass` : [String](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#String_type), Your hashed ncore password.
 
 #### Get hashed ncore password
 To get hashed password, you need to login to site with "Lower security". This means the backend generates a key, that you can use for login.
